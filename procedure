@@ -10,3 +10,18 @@ END;
 EXECUTE incluir_segmercado(3, 'atacadista');
 
 EXECUTE incluir_segmercado(4, 'farmaceutico');
+
+-----
+--SEMPRE USAR CREATE OR REPLACE, PORQUE SE ELA JÁ EXISTIR ELA APENAS ATUALIZA
+-----
+
+CREATE OR REPLACE PROCEDURE incluir_segmercado
+  (p_ID IN SEGMERCADO.ID%type, p_DESCRICAO IN SEGMERCADO.DESCRICAO%type)
+IS
+BEGIN
+  INSERT INTO SEGMERCADO (ID, DESCRICAO) VALUES (p_ID, UPPER(p_DESCRICAO));
+  COMMIT;
+END;
+
+---
+DROP PROCEDURE incluir_segmercado2;
